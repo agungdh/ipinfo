@@ -23,4 +23,37 @@ class Welcome extends CI_Controller {
         }
     }
 
+    function browser(){
+        $this->load->view('browser');
+    }
+
+    function check() {
+        // foreach (getallheaders() as $name => $value) {
+        //     echo "$name: $value\n";
+        // }
+        // echo $_SERVER['HTTP_USER_AGENT'];
+        $this->load->library('user_agent');
+
+        if ($this->agent->is_browser())
+        {
+                $agent = $this->agent->browser().' '.$this->agent->version();
+        }
+        elseif ($this->agent->is_robot())
+        {
+                $agent = $this->agent->robot();
+        }
+        elseif ($this->agent->is_mobile())
+        {
+                $agent = $this->agent->mobile();
+        }
+        else
+        {
+                $agent = 'Unidentified User Agent';
+        }
+
+        echo $agent;
+
+        echo $this->agent->platform(); // Platform info (Windows, Linux, Mac, etc.)
+
+    }
 }
