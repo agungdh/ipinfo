@@ -23,22 +23,18 @@
 	var negara;
 	var lokasi1;
 	var lokasi2;
-	var tabel1 = '<table><tbody><tr>';
-	var tabel2 = '</tr><tr>';
-	var tabel3 = '</tr></tbody></table>';
 
 	$.getJSON('https://ipinfo.io', function(data){
-		peta = '<iframe src = "https://maps.google.com/maps?q='+data.loc+'&hl=es;z=14&amp;output=embed"></iframe>';
-		ip = '<p>'+data.ip+'</p>';
-		operator = '<td>Operator</td><td>'+data.org+'</td>';
+		peta = '<iframe src = "https://maps.google.com/maps?q='+data.loc+'&hl=es;z=14&amp;output=embed"></iframe><br>';
+		ip = data.ip + '<br>';
+		operator = data.org + '<br>';
 		negara = data.country.toLowerCase();
-		lokasi1 = '<td>Lokasi</td><td><span class="flag-icon flag-icon-'+negara+'"></span> '+data.city+', '+data.region;
-		lokasi2 = '</td>';
+		lokasi1 = '<span class="flag-icon flag-icon-'+negara+'"></span> '+data.city+', '+data.region;
 		$(document).ready(function(){
 			$.getJSON('https://restcountries.eu/rest/v2/alpha/'+negara, function(data){
 				var fullnegara = data.name;
 				$("#data").append(
-		 			ip + peta + tabel1 + operator + tabel2 + lokasi1 + ', ' + data.name + lokasi2 +tabel3
+		 			ip + operator + peta + lokasi1 + ', ' + data.name
 		 		);
 			});
  		});
