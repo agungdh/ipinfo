@@ -6,6 +6,7 @@
 	<title>AgungDH</title>
 </head>
 <body>
+	<h1>IP Checker</h1>
 	<div id="data"></div>
 	<script type="text/javascript">
 	var peta;
